@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	nav(class="top-bar" data-topbar role="navigation")
+		ul.title-area
+			li.name
+				h1
+					a(href="/admin") Keep
+			li(class="toggle-topbar menu-icon")
+				a
+					span Menu
+		section.top-bar-section
+			ul.right
+				li(class="active")
+					a(href="/logout") Salir
+			ul.dropdown
+				li
+					a First link in dropdown
+				li.active
+					a Active link in dropdown
+	div.row
+		div.large-12
+			form(ng-controller="comentar")
+				textarea(id="pizarron" placeholder="Tu comentario aqui..." ng-value="comentario.texto" ng-model="comentario.texto")
+				input(type="hidden" ng-model="comentario.idusuario" ng-init="comentario.idusuario=#{idusuario}" value="#{idusuario}")
+				button(type="submit" class="button expand" id="send-q" value="Comentar" ng-click="submit(comentario)") Comentar

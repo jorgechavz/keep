@@ -1,0 +1,60 @@
+extends layout
+
+block content
+	ul(class="breadcrumbs")
+		li 
+			a(href="/") Inicio 				
+		li(class="current")
+			a(href="#") Agregar usuario
+	div(class="row")
+		div(class="large-6 clearfix large-centered columns panel")
+			h1 Registro
+			mi-avizo(ng-show="submited" class="avizo.tipo") {{avizo.texto}}
+			form(ng-controller="registro" name="formRegistro" ng-submit="submit()" ng-hide="submited")
+				p
+					small(class="error" ng-show="usuarioExiste") {{ usuarioExiste }}					
+					span Nickname:
+					input(type="text" name="nickname" ng-pattern="/^[a-zA-Z0-9]+$/" ng-change="someChange(usuario)" ng-model="usuario.nickname" ng-keyup="userExist(usuario.nickname)" required)
+					small(class="error" ng-show="formRegistro.nickname.$error.pattern") Nickname invalido!
+				small(class="error" ng-show="isPasswordOk(usuario.password,confirmpassword)") Las contraseñas no coinciden
+				p
+					span Password:
+					input(type="password" ng-change="someChange(usuario)" ng-model="usuario.password" required)
+				p
+					span Confirmar password:
+					input(type="password" ng-change="someChange(usuario)" ng-model="confirmpassword" required)									
+				p
+					span Email:
+					input(type="text" ng-change="someChange(usuario)" ng-model="usuario.email" required)					
+				p
+					span Nombre:
+					input(type="text" ng-change="someChange(usuario)" ng-model="usuario.first_name" required)
+				p
+					span Apellido:
+					input(type="text" ng-change="someChange(usuario)" ng-model="usuario.last_name" required)					
+				p
+					span Rol:
+					select(ng-model="usuario.rol" ng-change="someChange(usuario)" ng-options="rol.rol for rol in roles")
+				p
+					button(ng-disabled="isPasswordOk(usuario.password, confirmpassword) || usuarioExiste" class="button right" ng-click="submit(usuario)") Agregar usuario
+					a(href="/.." class="button right secondary") Volver				
+			a(class="button expand" href="/.." ng-show="submited") Entrar		
+			div(ng-controller="tarjeta" ng-show="ready")
+				div(class="large-12 vcard" id="tarjeta")
+					div(class="large-4 columns")
+						img(src="/images/logo.png")
+					div(class="large-8 vcard columns")
+						ul
+							li
+								span(class="nickname" ng-bind="u.nickname")
+							li
+								span(class="nombre" ng-bind="u.first_name + ' ' + u.last_name")
+							li
+								span(class="email" ng-bind="u.email")
+							li
+								span(ng-bind="u.rol.rol")
+				div(ng-show="ready")
+					center
+						h3 Bienvenido
+							b {{" "+u.nickname}}
+					a(class="button success expand" href="/screen") Entrar
