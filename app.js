@@ -92,11 +92,11 @@ app.get('/', function(req, res) {
   }
   res.render("index",{title:"Keep - The tool for dynamic presentations", user: req.user });
 });
-
 app.post("/", function(req, res) {
     console.log(req.body.id);
     res.redirect('/presentation');
 });
+
 
 app.get('/presentation', function(req, res) {
   if(!req.user) {
@@ -112,6 +112,9 @@ app.get('/presentation', function(req, res) {
   } else {
     res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
   }
+});
+app.get("/newcomment",function(req,res){
+  res.render("comment");
 });
 
 //Passport Router
@@ -139,6 +142,7 @@ io.on('connection', function(socket) {
   socket.on("slidechanged",function(indice) {
     io.emit("slided",indice.h);
   });
+
 });
 
 

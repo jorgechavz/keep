@@ -6,145 +6,137 @@ body {
 * {
   box-sizing: border-box;
 }
-#tarjeta {
-  background-color: #272822;
+#wrap-content {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-#pizarron {
-  background: #334c2f url("../images/tools.png");
-  background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-origin: content-box;
-  background-position-y: 3.1em;
-  font-family: 'Lato', sans-serif;
-  font-size: 4em;
-  height: 5em;
-  padding: 0.2em;
-  color: #fff;
-  border-bottom: 0.2em solid #755a2d;
-  margin-top: 1em;
-}
-#form-login p {
-  color: #000;
-  display: block;
+.nice-input {
   width: 100%;
+  padding: 15px;
+  background-color: #f9f9f9;
   text-align: center;
+  color: #222;
+  border: 1px solid #333;
+  outline: none;
+}
+.nice-input:hover {
+  background-color: #f5f5f5;
+}
+.nice-button {
+  background: #01d5f9;
+  padding: 10px;
+  width: 100%;
+  border: 0;
+  box-shadow: 3px 3px 0px #01afcd;
+  color: #fff;
+  font-size: 35px;
   margin: 15px 0px;
-  font-size: 20px;
 }
-#form-login input[type="text"] {
-  color: #222;
-  padding: 10px;
-}
-#send-q {
-  background-color: #b7cd44 !important;
-  font-weight: bold;
-  color: #1f1f1f;
-  margin-top: 0.5em;
-}
-a {
-  color: #00b7ff;
-  text-decoration: none;
-}
-#sign-in {
-  margin-top: 10px;
-  float: left;
-}
-.user {
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  margin-top: 10px;
-  font-size: 1.2em;
-}
-#people-connected {
-  padding: 0px;
-  margin: 0px;
-  list-style: none;
-  margin-top: 10px;
-  float: left;
-}
-#people-connected li {
-  padding: 10px;
-  border-radius: 3px;
-  background-color: #ae81ff;
-  color: #fff;
-  display: inline-block;
-  margin: 2px 2px;
-}
-.vcard ul li {
-  color: #fff;
-}
-.nickname {
-  color: #a6e22c;
-}
-.nombre {
-  color: #e6db67;
-}
-.email {
-  color: #66d9ef;
-}
-#enter {
-  text-align: center;
-  padding: 10px;
-  font-weight: bold;
-  border: 0px;
-  background-color: #6bcff3;
-  color: #fff;
-  width: 100%;
-  font-size: 2em;
-  margin-top: 10px;
-  box-shadow: 5px 5px 1px #50adce;
-}
-#enter:hover {
-  background-color: #50adce;
-  cursor: pointer;
-  box-shadow: 5px 5px 1px #6bcff3;
-}
-#welcome-screen {
-  text-align: center;
-  color: #222;
-}
-#welcome-screen img {
-  border-radius: 50%;
-  border: 4px solid #222;
-}
-#login {
-  width: 20%;
-  margin: auto;
-}
-#login padding-top 100px {
-  text-align: center;
-}
-#login img {
-  width: 100%;
-  margin-bottom: 15px;
+.nice-button:hover {
+  background-color: #01afcd;
+  box-shadow: 3px 3px 0px #01d5f9;
 }
 #logout {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: #000;
+  padding: 10px;
+  background-color: #1f1f1f;
   color: #fff;
-  padding: 5px;
 }
-#logout:hover {
-  background-color: #222;
+#profile-img {
+  border-radius: 50%;
+  border: 3px solid #ff001e;
 }
-#login span {
+.transition {
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  -o-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+#login {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+#login img {
   width: 100%;
-  float: left;
-  margin-bottom: 10px;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px #000;
 }
-#wrap-content {
-  width: 80%;
-  margin: auto;
-  color: #fff;
-  -webkit-transitionall: linear 1s;
-  transition: all linear 1s;
+#login #form-login p {
+  text-align: center;
+  font-size: 20px;
+  margin: 5px 0px;
 }
-#iframeloco {
+#welcome-screen {
+  padding-top: 50px;
+}
+#welcome-screen h1 {
+  color: #676767;
+  margin: 0px 0px 15px 0px;
+  font-size: 20px;
+}
+#welcome-screen h1 strong {
+  color: #000;
+  width: 100%;
+  display: block;
+  font-size: 25px;
+}
+#new-comment {
+  padding: 10px;
   width: 100%;
   height: 100%;
+  position: absolute;
+  background: #000;
+  text-align: center;
+}
+#new-comment input[type="submit"] {
+  width: 30%;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: 30px;
+  outline: none;
+}
+#new-comment input[type="submit"]:hover {
+  outline: none;
+  background-color: #f5f5f5;
+  border: 0px;
+}
+#new-comment a {
+  color: #fff;
+  font-size: 20px;
+  margin-left: 10px;
+  text-decoration: none;
+}
+#new-comment textarea {
+  border: 3px solid #d67d2a;
+  width: 100%;
+  height: 300px;
+  resize: none;
+  color: #f5f5f5;
+  font-size: 50px;
+  padding: 40px;
+  font-family: 'Indie Flower', cursive;
+  background: #206f38 url("../images/tools.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+@media (max-width: 500px) {
+  #login {
+    width: 100%;
+    padding: 0 15px;
+    text-align: center;
+  }
+  #login .logo-keep {
+    margin: 5px auto;
+    width: 90%;
+  }
+  #new-comment input[type="submit"] {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  #new-comment a {
+    display: block;
+    width: 100%;
+  }
 }

@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  link(href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css')
+  form(id="new-comment", method="post", action="/newcomment")
+    textarea
+    input(type="submit" value="Send")
+    a(href="/presentation") Go back
