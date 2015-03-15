@@ -4,10 +4,8 @@ block content
  #wrap-content(ng-controller="home")
   div(id="login" class="animated bounceInDown")
    img(src="/images/logo.png")
-   span(ng-show="showCredInvalid" class="round alert label animated bounceIn") {{razonInvalid}}
    form#form-login
-    input(class="user" ng-hide="checked" type="text" placeholder="Nickname" ng-model="usuario.nickname" value="usuario.nickname" required)
-    input(class="user" type="password" placeholder="Contraseña" ng-model="usuario.password" value="usuario.password" required)   	
-    button(id="enter" ng-model="checked" type="submit" ng-click="login(usuario)") Entrar
-    a(href="/registro" id="sign-in") Registrarse    
-    //a(href="/addrol" id="sign-in") Agregar rol
+    input(class="user" type="text" placeholder="Add the ID here" required)
+    button(id="enter" type="submit") Enter
+    p or
+    img(src="/images/login-facebook.png")

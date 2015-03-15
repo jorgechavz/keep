@@ -1,19 +1,13 @@
 doctype html
-html(ng-app="keep")
+html
 	head
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
-		link(rel='stylesheet', href='/stylesheets/foundation.css')
 		link(rel='stylesheet', href='/stylesheets/normalize.css')
 		link(rel='stylesheet', href='/stylesheets/animate.css')
 		link(rel="shortcut icon" href="/images/logo.png")
 		script(src="/javascripts/vendor/jquery.js")		
-		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js")
-		script(src="/javascripts/foundation/foundation.js")
-		script(src="/javascripts/foundation/foundation.alert.js")
-		script(src="/javascripts/foundation/foundation.topbar.js")
-		script(type='text/javascript').
-				$(document).foundation();  
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js")  
 		script(src="/socket.io/socket.io.js")
 		script(src="/javascripts/script.js")
 	body

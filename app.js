@@ -61,7 +61,9 @@ app.get("/", function(req, res){
     res.render("index",{title:"Keep - La Herramienta para presentaciones dinamicas"});
 });
 
+app.post("/choose",function(req,res){
 
+});
 
 app.get("/screen", function(req, res){
   res.sendfile(path.join(__dirname, 'html')+"/screen.html");
