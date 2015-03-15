@@ -1,7 +1,7 @@
 body {
   background-image: url("../images/bgMain.jpg") !important;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100%;
 }
 * {
   box-sizing: border-box;
@@ -23,6 +23,18 @@ body {
   border-bottom: 0.2em solid #755a2d;
   margin-top: 1em;
 }
+#form-login p {
+  color: #000;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 15px 0px;
+  font-size: 20px;
+}
+#form-login input[type="text"] {
+  color: #222;
+  padding: 10px;
+}
 #send-q {
   background-color: #b7cd44 !important;
   font-weight: bold;
@@ -42,9 +54,7 @@ a {
   text-align: center;
   width: 100%;
   margin-top: 10px;
-}
-.user font-size 1.2em {
-  color: #000;
+  font-size: 1.2em;
 }
 #people-connected {
   padding: 0px;
@@ -85,19 +95,40 @@ a {
   margin-top: 10px;
   box-shadow: 5px 5px 1px #50adce;
 }
-#enter hover {
+#enter:hover {
   background-color: #50adce;
   cursor: pointer;
   box-shadow: 5px 5px 1px #6bcff3;
 }
+#welcome-screen {
+  text-align: center;
+  color: #222;
+}
+#welcome-screen img {
+  border-radius: 50%;
+  border: 4px solid #222;
+}
 #login {
-  width: 222px;
+  width: 20%;
   margin: auto;
-  padding-top: 50px;
+}
+#login padding-top 100px {
+  text-align: center;
 }
 #login img {
   width: 100%;
   margin-bottom: 15px;
+}
+#logout {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #000;
+  color: #fff;
+  padding: 5px;
+}
+#logout:hover {
+  background-color: #222;
 }
 #login span {
   width: 100%;
@@ -105,13 +136,6 @@ a {
   margin-bottom: 10px;
   font-weight: bold;
   text-shadow: 1px 1px 1px #000;
-}
-#form-login p {
-  color: #000;
-  text-align: center;
-  font-size: 25px;
-  margin: 5px 0px;
-  margin-top: 20px;
 }
 #wrap-content {
   width: 80%;
