@@ -1,18 +1,24 @@
 extends layout
 
 block content
-	#wrap-content(ng-controller="home")
-		div(id="login" class="animated bounceInDown")
-			unless user
-				img(src="/images/logo.png")
-				form#form-login
-					input(class="user" type="text" placeholder="Add the ID here" required)
-					button(id="enter" type="submit") Enter
-				p or
-				a(href="/auth/facebook")
-					img(src="/images/login-facebook.png")
-			else
-				h1 Welcome #{user.displayName}
-					p
-						h3
-							a(href="/logout") Logout
+  #wrap-content(ng-controller="home")    
+      unless user
+        div(id="login" class="animated bounceInDown")
+          img(src="/images/logo.png")
+          form#form-login
+            input(class="user" type="text" placeholder="Add the ID here" required)
+            button(id="enter" type="submit")
+              i(class="fa fa-laptop")  Enter
+            p or
+            a(href="/auth/facebook")
+              img(src="/images/login-facebook.png")
+      else
+        a(href="/logout" id="logout")
+          i(class="fa fa-sign-out") Logout             
+        div(id="login" class="animated bounceInDown")
+          div#welcome-screen
+            h1 Welcome #{user.displayName}          
+            img(src="https://graph.facebook.com/#{user.id}/picture?type=large", alt="#{user.displayName}")
+            input(class="user" type="text" placeholder="Type the ID here" required)
+            button(id="enter" type="submit")
+              i(class="fa fa-laptop")  Enter

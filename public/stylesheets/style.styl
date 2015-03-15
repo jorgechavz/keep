@@ -1,7 +1,7 @@
 body
   background-image url("../images/bgMain.jpg") !important
   background-attachment fixed
-  background-size cover
+  background-size 100%
 *
   box-sizing border-box
 #tarjeta
@@ -19,6 +19,17 @@ body
 	color white
 	border-bottom 0.2em solid rgb(117, 90, 45)
 	margin-top 1em
+#form-login
+  p
+    color black
+    display block
+    width 100%
+    text-align center
+    margin 15px 0px
+    font-size 20px
+  input[type="text"]
+    color #222
+    padding 10px
 #send-q
   background-color rgb(183, 205, 68) !important
   font-weight bold
@@ -36,7 +47,7 @@ a
 	width 100%
 	margin-top 10px
 	font-size 1.2em
-  color black
+
 #people-connected
 	padding 0px
 	margin 0px
@@ -65,37 +76,45 @@ a
 	font-weight bold
 	border 0px
 	background-color #6bcff3
-	color white
+	color white  
 	width 100%
 	font-size 2em
 	margin-top 10px
 	box-shadow 5px 5px 1px #50adce
-
-#enter hover
-	background-color #50adce
-	cursor pointer
-	box-shadow 5px 5px 1px #6bcff3
-
+#enter
+  &:hover
+  	background-color #50adce
+  	cursor pointer
+  	box-shadow 5px 5px 1px #6bcff3
+#welcome-screen
+  text-align center
+  color #222
+  img
+    border-radius 50%
+    border 4px solid #222
 #login
-	width 222px
+	width 20%
 	margin auto
-	padding-top 50px
+	padding-top 100px
+  text-align center
 #login img
 	width 100%
 	margin-bottom 15px
+#logout
+  position absolute
+  right 10px
+  top 10px
+  background black
+  color white
+  padding 5px
+  &:hover
+      background-color #222
 #login span
 	width 100%
 	float left
 	margin-bottom 10px
 	font-weight bold
 	text-shadow 1px 1px 1px #000
-#form-login
-  p
-    color: black
-    text-align: center
-    font-size: 25px
-    margin 5px 0px
-    margin-top 20px
 #wrap-content
 	width 80%
 	margin auto
@@ -105,4 +124,4 @@ a
 
 #iframeloco
 	width 100%
-	height 100%
+	height 100%;
