@@ -81,9 +81,6 @@ console.log("Listening port " + port);
 app.get("/", function(req, res){
     res.render("index",{title:"Keep - La Herramienta para presentaciones dinamicas", user: req.user });
 });
-app.post("/choose",function(req,res){
-
-});
 app.get("/screen", function(req, res){
   res.sendfile(path.join(__dirname, 'html')+"/screen.html");
 });
