@@ -94,7 +94,8 @@ app.get('/', function(req, res) {
 
 app.post("/", function(req, res) {
     console.log(req.body.id);
-    res.redirect('/presentation');
+    if (req.body.id === "123")
+      res.redirect('/presentation');
 });
 
 
@@ -107,12 +108,12 @@ app.get('/presentation', function(req, res) {
               res.sendfile(path.join(__dirname, 'html')+"/screen.html");
            } else {
               console.log("Normal user");
-              res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+              res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
            }
          }
     });
   } else {
-    res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+    res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
   }
 });
 

@@ -1,9 +1,17 @@
 extends layout
 
 block content
-  link(href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css')
-  form(id="new-comment", method="post", action="/newcomment")
-    textarea
-    input(type="submit" value="Send")
-    input(type="hidden" value="#{user.displayName}" id="currentIdUser")
-    a(href="/presentation") Go back    
+	unless user
+		link(href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css')
+		form(id="new-comment", method="post", action="/newcomment")
+			textarea
+			input(type="hidden" value="Anonymous" id="currentIdUser")
+			input(type="submit" value="Send")
+			a(href="/presentation") Go back
+	else
+		link(href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css')
+		form(id="new-comment", method="post", action="/newcomment")
+			textarea
+			input(type="submit" value="Send")
+			input(type="hidden" value="#{user.displayName}" id="currentIdUser")
+			a(href="/presentation") Go back
