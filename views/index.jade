@@ -1,11 +1,18 @@
 extends layout
 
 block content
- #wrap-content(ng-controller="home")
-  div(id="login" class="animated bounceInDown")
-   img(src="/images/logo.png")
-   form#form-login
-    input(class="user" type="text" placeholder="Add the ID here" required)
-    button(id="enter" type="submit") Enter
-    p or
-    img(src="/images/login-facebook.png")
+	#wrap-content(ng-controller="home")
+		div(id="login" class="animated bounceInDown")
+			unless user
+				img(src="/images/logo.png")
+				form#form-login
+					input(class="user" type="text" placeholder="Add the ID here" required)
+					button(id="enter" type="submit") Enter
+				p or
+				a(href="/auth/facebook")
+					img(src="/images/login-facebook.png")
+			else
+				h1 Welcome #{user.displayName}
+					p
+						h3
+							a(href="/logout") Logout
