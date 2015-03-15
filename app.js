@@ -24,13 +24,14 @@ var connection = mysql.createConnection({
    port: 3306
 });
 
+/*
 connection.connect(function(error) {
    if(error) {
       throw error;
    }else{
       console.log('Mysql went nice.');
    }
-});
+});*/
 
 
 // Motor para las vistas
