@@ -82,6 +82,45 @@ body {
   display: block;
   font-size: 25px;
 }
+#new-comment {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #000;
+  text-align: center;
+}
+#new-comment input[type="submit"] {
+  width: 30%;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: 30px;
+  outline: none;
+}
+#new-comment input[type="submit"]:hover {
+  outline: none;
+  background-color: #f5f5f5;
+  border: 0px;
+}
+#new-comment a {
+  color: #fff;
+  font-size: 20px;
+  margin-left: 10px;
+  text-decoration: none;
+}
+#new-comment textarea {
+  border: 3px solid #d67d2a;
+  width: 100%;
+  height: 300px;
+  resize: none;
+  color: #f5f5f5;
+  font-size: 50px;
+  padding: 40px;
+  font-family: 'Indie Flower', cursive;
+  background: #206f38 url("../images/tools.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
 @media (max-width: 500px) {
   #login {
     width: 100%;
@@ -91,5 +130,13 @@ body {
   #login .logo-keep {
     margin: 5px auto;
     width: 90%;
+  }
+  #new-comment input[type="submit"] {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  #new-comment a {
+    display: block;
+    width: 100%;
   }
 }

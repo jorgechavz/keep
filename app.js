@@ -88,6 +88,9 @@ app.get("/screen2", function(req, res){
 
   res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
 });
+app.get("/newcomment",function(req,res){
+  res.render("comment");
+});
 
 
 //Passport Router
@@ -112,28 +115,11 @@ function ensureAuthenticated(req, res, next) {
 //SOCKETS
 io.on('connection', function(socket){
 
-    socket.on("login",function(usuario){
-        var args = {
-            data: usuario,
-            headers:{"Content-Type": "application/json"}
-        };
-
-    });
-
     //slidechanged
         socket.on("slidechanged",function(indice){
             io.emit("slided",indice.h);
         });
-
-    //Nuevo usuario
-     socket.on('nuevoUsuario', function(u){
-
-      var args = {
-          data: u,
-          headers:{"Content-Type": "application/json"}
-      };
-     });
-    });
+});
 
 
 //ERRORES
