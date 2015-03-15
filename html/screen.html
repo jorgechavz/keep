@@ -97,57 +97,9 @@ e=n?parseInt(n.getAttribute("data-fragment-index")||0,10):-1}"number"==typeof t&
 		<script src="/javascripts/vendor/jquery.js"></script>
 		<script src="/src/main/javascript/jquery.toastmessage.js" type="text/javascript" charset="utf-8"></script>
 
-    <script>
-      $(document).ready(function(){
-        var HTML = '<div id="panel"><img src="/images/question_mark.png" id="question" alt="Question mark"></div>';
 
-        $("body").prepend(HTML);
-
-         var showQ = 1;
-
-        $("#question").click(function(e){
-          e.preventDefault();
-
-          showQ++;
-
-          if(showQ == 3){
-            showQ = 0;
-          }
-
-          if(showQ == 0){
-            $("#panel img").attr("src","/images/question_mark_off.png");
-          }else if(showQ == 1){
-            $("#panel img").attr("src","/images/question_mark.png");
-          }else{
-            $("#panel img").attr("src","/images/question_mark_on.png");
-          }
-
-        });
-
-        socket.on("newComment",function(comentario){
-          console.log(showQ);
-          if(showQ != 0){
-            $().toastmessage('showToast', {
-              text     : comentario.nickname+" : "+comentario.comentario,
-              sticky   : false,
-              type     : 'success'
-            });
-          }
-        });
-
-        socket.on("newLogin",function(nickname){
-
-          $().toastmessage('showToast', {
-              text     : nickname+" se ha unido",
-              sticky   : false,
-              type     : 'success'
-          });
-        });
-      });
-    </script>
 		<script type="text/javascript">
 		var socket = io();
-
 
 			Reveal.initialize({
 
@@ -185,11 +137,17 @@ e=n?parseInt(n.getAttribute("data-fragment-index")||0,10):-1}"number"==typeof t&
 			});
 
 
-			var change = 0;
 			Reveal.addEventListener( 'slidechanged', function( event ) {
-				if(change == 0){
 					socket.emit("slidechanged",Reveal.getIndices());
-				}
+			});
+
+			socket.on("newcomment",function(comment){
+				console.log(comment)
+				$().toastmessage('showToast', {
+						text     : comment.name+" said:"+comment.comment,
+						sticky   : false,
+						type     : 'success'
+				});
 			});
 
 			socket.on("slided",function(i){

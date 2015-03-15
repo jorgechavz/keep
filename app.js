@@ -19,7 +19,7 @@ mysql = require('mysql');
 var connection = mysql.createConnection({
    host: 'localhost',
    user: 'root',
-   password: '123asd',
+   password: 'root',
    database: 'keep',
    port: 3306
 });
@@ -81,17 +81,17 @@ console.log("Listening port " + port);
 app.get('/', function(req, res) {
   if(req.user) {
     var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
-         if(result.length > 0) {
-            console.log("User " + result[0].name + " already exists");
-         } else {
-            var query = connection.query('INSERT INTO users (fb_id, name, role) VALUES(?, ?, ?)', [req.user.id, req.user.displayName, 0], function(error, result) {
-              console.log("User " + req.user.displayName +" inserted");
-            });
+        if(result != undefined){
+         if(result.length == 0) {
+           var query = connection.query('INSERT INTO users (fb_id, name, role) VALUES(?, ?, ?)', [req.user.id, req.user.displayName, 0], function(error, result) {
+           });
          }
+        }
     });
   }
   res.render("index",{title:"Keep - The tool for dynamic presentations", user: req.user });
 });
+
 app.post("/", function(req, res) {
     console.log(req.body.id);
     res.redirect('/presentation');
@@ -99,22 +99,32 @@ app.post("/", function(req, res) {
 
 
 app.get('/presentation', function(req, res) {
-  if(!req.user) {
+  if(req.user) {
     var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
-         if(result.length > 0) {
-            console.log("User " + result[0].role + " role");
-            res.sendfile(path.join(__dirname, 'html')+"/screen.html");
-         } else {
-            console.log("Normal user");
-            res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+         if(result != undefined){
+           if(result.length > 0) {
+              console.log("User " + result[0].role + " role");
+              res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+           } else {
+              console.log("Normal user");
+              res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+           }
          }
     });
   } else {
-    res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+    res.sendfile(path.join(__dirname, 'html')+"/screen.html");
   }
 });
+
 app.get("/newcomment",function(req,res){
-  res.render("comment");
+    console.log(req.user);
+    res.render("comment",{user:req.user});
+});
+
+app.post("/newcomment",function(req,res){
+  var comment = req.body.comment;
+  var name = req.body.uname;
+  io.emit("newcomment",{comment:comment,name:name});
 });
 
 //Passport Router

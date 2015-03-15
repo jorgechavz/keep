@@ -20,7 +20,7 @@ block content
           div#welcome-screen
             h1 Welcome
               strong #{user.displayName}     
-            img(src="https://graph.facebook.com/#{user.id}/picture?type=large", alt="#{user.displayName}")
+            img(src="https://graph.facebook.com/#{user.id}/picture?type=large", id="profile-pic" ,alt="#{user.displayName}")
             form(method="post" action="/" id="form-login")
               input(class="nice-input user" name="id" type="text" placeholder="Type the ID here" required)
               button(id="enter" class="nice-button" type="submit")
