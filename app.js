@@ -90,7 +90,7 @@ app.get('/', function(req, res) {
          }
     });
   }
-  res.render("index",{title:"Keep - La Herramienta para presentaciones dinamicas", user: req.user });
+  res.render("index",{title:"Keep - The tool for dynamic presentations", user: req.user });
 });
 
 app.post("/", function(req, res) {
@@ -99,7 +99,7 @@ app.post("/", function(req, res) {
 });
 
 app.get('/presentation', function(req, res) {
-  if(req.user) {
+  if(!req.user) {
     var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
          if(result.length > 0) {
             console.log("User " + result[0].role + " role");
@@ -113,12 +113,6 @@ app.get('/presentation', function(req, res) {
     res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
   }
 });
-
-/*
-app.get('/account', ensureAuthenticated, function(req, res) {
-  res.render('account', { user: req.user });
-});
-*/
 
 //Passport Router
 app.get('/auth/facebook', passport.authenticate('facebook'));
