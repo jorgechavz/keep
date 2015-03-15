@@ -1,19 +1,19 @@
 var express     = require('express'),
 path            = require('path'),
 favicon         = require('serve-favicon'),
-passport = require('passport')
-util = require('util'),
+passport        = require('passport')
+util            = require('util'),
 FacebookStrategy = require('passport-facebook').Strategy,
 logger          = require('morgan'),
 cookieParser    = require('cookie-parser'),
 bodyParser      = require('body-parser'),
-methodOverride = require('method-override'),
+methodOverride  = require('method-override'),
 session         = require('express-session'),
 port            = Number(process.env.PORT || 3700),
 app             = express(),
 Client          = require('node-rest-client').Client,
 client          = new Client(),
-mysql = require('mysql');
+mysql           = require('mysql');
 
 var connection = mysql.createConnection({
    host: 'localhost',
@@ -78,14 +78,17 @@ app.get("/screen2", function(req, res){
 io.on('connection', function(socket){
 
     socket.on("login",function(usuario){
-
         var args = {
             data: usuario,
             headers:{"Content-Type": "application/json"}
         };
 
-
     });
+
+    //slidechanged
+        socket.on("slidechanged",function(indice){
+            io.emit("slided",indice.h);
+        });
 
     //Nuevo usuario
      socket.on('nuevoUsuario', function(u){
