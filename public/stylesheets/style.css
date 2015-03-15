@@ -1,6 +1,7 @@
 body {
-  background-image: url("../images/bg.png") !important;
+  background-image: url("../images/bgMain.jpg") !important;
   background-attachment: fixed;
+  background-size: cover;
 }
 #tarjeta {
   background-color: #272822;
