@@ -103,7 +103,7 @@ app.get('/presentation', function(req, res) {
   if(req.user) {
     var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
          if(result != undefined){
-           if(result.length > 0) {
+           if(result[0].role === 1) {
               console.log("User " + result[0].role + " role");
               res.sendfile(path.join(__dirname, 'html')+"/screen.html");
            } else {
