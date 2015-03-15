@@ -192,17 +192,6 @@ e=n?parseInt(n.getAttribute("data-fragment-index")||0,10):-1}"number"==typeof t&
 				}
 			});
 
-			socket.on("changeSlide",function(){
-				Reveal.next();
-				alert("hi");
-			});
-
-			Reveal.addEventListener( 'slidechanged', function( event ) {
-					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-
-			} );
-
-
 			socket.on("slided",function(i){
 				Reveal.slide( i, 0, 0 );
 			});

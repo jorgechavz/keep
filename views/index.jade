@@ -5,14 +5,17 @@ block content
 		div(id="login" class="animated bounceInDown")
 			unless user
 				img(src="/images/logo.png")
-				form#form-login
-					input(class="user" type="text" placeholder="Add the ID here" required)
+				form(method="post" action="/" id="form-login")
+					input(class="user" name="id" type="text" placeholder="Add the ID here" required)
 					button(id="enter" type="submit") Enter
 				p or
 				a(href="/auth/facebook")
 					img(src="/images/login-facebook.png")
 			else
 				h1 Welcome #{user.displayName}
-					p
+				form(method="post" action="/" id="form-login")
+					input(class="user" name="id" type="text" placeholder="Add the ID here" required)
+					button(id="enter" type="submit") Enter
+				p
 						h3
 							a(href="/logout") Logout

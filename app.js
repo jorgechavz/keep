@@ -19,13 +19,13 @@ mysql = require('mysql');
 var connection = mysql.createConnection({
    host: 'localhost',
    user: 'root',
-   password: 'root',
+   password: '123asd',
    database: 'keep',
    port: 3306
 });
 
-connection.connect(function(error){
-   if(error){
+connection.connect(function(error) {
+   if(error) {
       throw error;
    }else{
       console.log('Mysql went nice.');
@@ -78,20 +78,47 @@ var io = require('socket.io').listen(app.listen(port));
 
 console.log("Listening port " + port);
 
-app.get("/", function(req, res){
-    res.render("index",{title:"Keep - La Herramienta para presentaciones dinamicas", user: req.user });
+app.get('/', function(req, res) {
+  if(req.user) {
+    var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
+         if(result.length > 0) {
+            console.log("User " + result[0].name + " already exists");
+         } else {
+            var query = connection.query('INSERT INTO users (fb_id, name, role) VALUES(?, ?, ?)', [req.user.id, req.user.displayName, 0], function(error, result) {
+              console.log("User " + req.user.displayName +" inserted");
+            });
+         }
+    });
+  }
+  res.render("index",{title:"Keep - La Herramienta para presentaciones dinamicas", user: req.user });
 });
-app.post("/choose",function(req,res){
 
-});
-app.get("/screen", function(req, res){
-  res.sendfile(path.join(__dirname, 'html')+"/screen.html");
-});
-app.get("/screen2", function(req, res){
-
-  res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+app.post("/", function(req, res) {
+    console.log(req.body.id);
+    res.redirect('/presentation');
 });
 
+app.get('/presentation', function(req, res) {
+  if(req.user) {
+    var exists = connection.query("SELECT * FROM users WHERE fb_id = ?",[req.user.id], function(error, result) {
+         if(result.length > 0) {
+            console.log("User " + result[0].role + " role");
+            res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+         } else {
+            console.log("Normal user");
+            res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+         }
+    });
+  } else {
+    res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+  }
+});
+
+/*
+app.get('/account', ensureAuthenticated, function(req, res) {
+  res.render('account', { user: req.user });
+});
+*/
 
 //Passport Router
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -103,7 +130,7 @@ app.get('/auth/facebook/callback',
   function(req, res) {
     res.redirect('/');
   });
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
@@ -113,30 +140,12 @@ function ensureAuthenticated(req, res, next) {
 }
 
 //SOCKETS
-io.on('connection', function(socket){
-
-    socket.on("login",function(usuario){
-        var args = {
-            data: usuario,
-            headers:{"Content-Type": "application/json"}
-        };
-
-    });
-
-    //slidechanged
-        socket.on("slidechanged",function(indice){
-            io.emit("slided",indice.h);
-        });
-
-    //Nuevo usuario
-     socket.on('nuevoUsuario', function(u){
-
-      var args = {
-          data: u,
-          headers:{"Content-Type": "application/json"}
-      };
-     });
-    });
+io.on('connection', function(socket) {
+  //slidechanged
+  socket.on("slidechanged",function(indice) {
+    io.emit("slided",indice.h);
+  });
+});
 
 
 //ERRORES
