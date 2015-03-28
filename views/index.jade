@@ -3,16 +3,19 @@ extends layout
 block content
   #wrap-content(ng-controller="home")    
       unless user
-        div(id="login" class="animated bounceInDown")
+        div(id="login" class="animated bounceInDown" style="text-align:center;")
           img(src="/images/logo.png" class="logo-keep")
-          form(method="post" action="/" id="form-login")
-            input(class="nice-input user" name="id" type="text" placeholder="Add the ID here" required)
-            button(id="enter" class="nice-button" type="submit")
-
-              i(class="fa fa-laptop")  Enter
-            p or
-            a(href="/auth/facebook")
-              img(src="/images/login-facebook.png")
+          h1 Demo
+          a(href="/presenter")
+            button( id="enter" class="nice-button")
+              i(class="fa fa-laptop")  Presenter
+          a(href="/attendant")
+            button(id="enter" class="nice-button")
+              i(class="fa fa-laptop")  Attendent
+          p 
+            h2 or
+          a(href="/auth/facebook")
+            img(src="/images/login-facebook.png")
       else
         a(href="/logout" id="logout")
           i(class="fa fa-sign-out") Logout             

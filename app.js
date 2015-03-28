@@ -99,6 +99,14 @@ app.post("/", function(req, res) {
       res.redirect('/presentation');
 });
 
+app.get("/presenter", function(req, res) {
+  res.sendfile(path.join(__dirname, 'html')+"/screen.html");
+});
+
+app.get("/attendant", function(req, res) {
+  res.sendfile(path.join(__dirname, 'html')+"/screenUser.html");
+});
+
 
 app.get('/presentation', function(req, res) {
   if(req.user) {
